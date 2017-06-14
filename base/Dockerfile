@@ -1,4 +1,10 @@
 FROM ubuntu:16.04
+LABEL org.srcml.email="srcmldev@gmail.com" \
+      org.srcml.url="srcml.org" \
+      org.srcml.distro="ubuntu" \
+      org.srcml.osversion="16.04" \
+      org.srcml.architecture="x86_64" \
+      org.srcml.boost="1.64.0"
 
 # Update and install dependencies
 RUN apt-get update && apt-get install -y \
@@ -25,3 +31,4 @@ RUN mkdir /boost-Build \
     && ./b2 link=static cxxflags="-fPIC -static -Wl,--whole-archive" threading=multi install \
     && rm -fR /boost-Build
 
+    
