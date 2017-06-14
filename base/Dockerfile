@@ -1,8 +1,8 @@
-FROM opensuse:13.2
+FROM opensuse:42.1
 LABEL org.srcml.email="srcmldev@gmail.com" \
       org.srcml.url="srcml.org" \
       org.srcml.distro="opensuse" \
-      org.srcml.osversion="13.1" \
+      org.srcml.osversion="42.1" \
       org.srcml.architecture="x86_64" \
       org.srcml.boost="1.55.0" \
       org.srcml.antlr="2.7.7"
@@ -30,7 +30,7 @@ RUN mkdir /boost-Build \
     && ./bootstrap.sh --with-libraries=program_options,filesystem,thread,date_time \
     && ./b2 link=static cxxflags="-fPIC -static -Wl,--whole-archive" threading=multi install \
     && rm -fR /boost-Build
-
+    
 # libantlr packages for this platform do not build with -fPIC
 # Download, build, and install antlr from source
 ENV ANTLR_SRC_URL http://www.antlr2.org/download/antlr-2.7.7.tar.gz
