@@ -1,25 +1,26 @@
-FROM ubuntu:17.10
+FROM fedora:25
 LABEL org.srcml.email="srcmldev@gmail.com" \
       org.srcml.url="srcml.org" \
-      org.srcml.distro="ubuntu" \
-      org.srcml.osversion="17.10" \
+      org.srcml.distro="fedora" \
+      org.srcml.osversion="25" \
       org.srcml.architecture="x86_64" \
       org.srcml.boost="1.64.0"
 
 # Update and install dependencies
-RUN apt-get update && apt-get install -y \
+RUN dnf upgrade -y && dnf install -y \
+    tar \
     curl \
-    g++ \
+    gcc-c++ \
+    make \
     cmake \
     antlr \
-    libantlr-dev \
-    libxml2-dev \
-    libxml2-utils \
-    libxslt1-dev \
-    libarchive-dev \
-    libssl-dev \
-    libcurl4-openssl-dev \
-    python-dev
+    antlr-C++ \
+    libxml2-devel \
+    libxslt-devel \
+    libarchive-devel \
+    libcurl-devel \
+    openssl-devel \
+    python
 
 # Download, build, and install boost from source
 ENV BOOST_MINOR_VERSION 64
