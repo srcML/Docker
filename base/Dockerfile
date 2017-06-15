@@ -1,14 +1,16 @@
-FROM ubuntu:17.10
+FROM ubuntu:17.04
 LABEL org.srcml.email="srcmldev@gmail.com" \
       org.srcml.url="srcml.org" \
       org.srcml.distro="ubuntu" \
-      org.srcml.osversion="17.10" \
+      org.srcml.osversion="17.04" \
       org.srcml.architecture="x86_64" \
       org.srcml.boost="1.64.0"
 
 # Update and install dependencies
 RUN apt-get update && apt-get install -y \
     curl \
+    cpio \
+    zip \
     g++ \
     cmake \
     antlr \
