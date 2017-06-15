@@ -9,6 +9,7 @@ LABEL org.srcml.email="srcmldev@gmail.com" \
 # Update and install dependencies
 RUN apt-get update && apt-get install -y \
     curl \
+    zip \
     g++ \
     cmake \
     antlr \
