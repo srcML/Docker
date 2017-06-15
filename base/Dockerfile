@@ -9,6 +9,9 @@ LABEL org.srcml.email="srcmldev@gmail.com" \
 # Update and install dependencies
 RUN apt-get update && apt-get install -y \
     curl \
+    cpio \
+    zip \
+    bzip2 \
     g++ \
     cmake \
     antlr \
@@ -30,5 +33,3 @@ RUN mkdir /boost-Build \
     && ./bootstrap.sh --with-libraries=program_options,filesystem,thread,date_time \
     && ./b2 link=static cxxflags="-fPIC -static -Wl,--whole-archive" threading=multi install \
     && rm -fR /boost-Build
-
-    
