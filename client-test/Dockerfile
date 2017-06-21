@@ -4,6 +4,7 @@ CMD ["/bin/bash", \
      "-c", \
      "mkdir /srcML-build; \
       cd /srcML-build; \
-      cmake -DBUILD_CLIENT_TESTS=ON /srcML; \
-      make -j2; \
-      ctest -VV -D Nightly -T MemCheck --overwrite Site='ubuntu_16.04_x86_64-client' "]
+      cmake -DBUILD_CLIENT_TESTS=ON -DBUILD_UNIT_TESTS=OFF -DBUILD_TIMING_TESTS=OFF -DBUILD_LARGE_SYSTEMS_TESTS=OFF /srcML; \
+      make install; \
+      ldconfig; \
+      tail -f /dev/null"]
