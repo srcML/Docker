@@ -1,15 +1,18 @@
-FROM fedora:25
+FROM fedora:rawhide
 LABEL org.srcml.email="srcmldev@gmail.com" \
       org.srcml.url="srcml.org" \
       org.srcml.distro="fedora" \
-      org.srcml.osversion="25" \
+      org.srcml.osversion="rawhide" \
       org.srcml.architecture="x86_64" \
       org.srcml.boost="1.64.0"
 
 # Update and install dependencies
 RUN dnf upgrade -y && dnf install -y \
-    tar \
     curl \
+    tar \
+    zip \
+    bzip2 \
+    cpio \
     gcc-c++ \
     make \
     cmake \
