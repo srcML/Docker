@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y \
     zip \
     bzip2 \
     g++ \
+    make \
     antlr \
     libantlr-dev \
     libxml2-dev \
