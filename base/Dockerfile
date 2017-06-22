@@ -12,7 +12,6 @@ RUN apt-get update && apt-get install -y \
     cpio \
     zip \
     g++ \
-    cmake \
     antlr \
     libantlr-dev \
     libxml2-dev \
@@ -22,6 +21,10 @@ RUN apt-get update && apt-get install -y \
     libssl-dev \
     libcurl4-openssl-dev \
     python-dev
+
+# Download and install a newer binary version of cmake
+ENV CMAKE_BIN_URL https://cmake.org/files/v3.8/cmake-3.8.1-Linux-x86_64.tar.gz
+RUN curl -L $CMAKE_BIN_URL | tar xz --strip-components=1 -C /usr/local/
 
 # Download, build, and install boost from source
 ENV BOOST_MINOR_VERSION 64
