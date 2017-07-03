@@ -4,7 +4,7 @@ LABEL org.srcml.email="srcmldev@gmail.com" \
       org.srcml.distro="opensuse" \
       org.srcml.osversion="42.1" \
       org.srcml.architecture="x86_64" \
-      org.srcml.boost="1.55.0" \
+      org.srcml.boost="1.64.0" \
       org.srcml.antlr="2.7.7"
 
 # Update and install dependencies
@@ -22,7 +22,7 @@ RUN zypper --non-interactive install --no-recommends \
     python-devel
 
 # Download, build, and install boost from source
-ENV BOOST_MINOR_VERSION 55
+ENV BOOST_MINOR_VERSION 64
 RUN mkdir /boost-Build \
     && curl -L https://sourceforge.net/projects/boost/files/boost/1.${BOOST_MINOR_VERSION}.0/boost_1_${BOOST_MINOR_VERSION}_0.tar.gz | \
     tar xz --strip-components=1 -C /boost-Build \
