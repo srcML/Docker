@@ -11,6 +11,7 @@ LABEL org.srcml.email="srcmldev@gmail.com" \
 RUN zypper --non-interactive install --no-recommends \
     curl \
     tar \
+    zip \
     gcc-c++ \
     cmake \
     java-headless \
@@ -39,8 +40,10 @@ RUN curl -L $ANTLR_SRC_URL | tar xz -C / \
     && cd antlr-2.7.7 \
     # Compile with -fPIC by changing line 59 in scripts/cxx.sh.in
     && sed -i -e '59s/-pipe/-pipe -fPIC/' scripts/cxx.sh.in \
-    # Replace EOF with 1 on line 475 of CharScanner.hpp
-    && sed -i -e '474s/= EOF/= 1/' lib/cpp/antlr/CharScanner.hpp \
+    # Remove initialization of EOF_CHAR on line 475 of CharScanner.hpp
+    && sed -i -e '474s/= EOF/;/' lib/cpp/antlr/CharScanner.hpp \
+    # Add initialization of EOF_CHAR on line 102 of CharScanner.cpp
+    && sed -i -e '102s/EOF_CHAR;/EOF_CHAR = std::char_traits<char>::eof();/' lib/cpp/src/CharScanner.cpp \
     # Insert #include <string.h> in CharScanner.hpp
     && sed -i -e '1 i\#include <string.h>' lib/cpp/antlr/CharScanner.hpp \
     # build and install
