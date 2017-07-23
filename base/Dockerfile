@@ -20,7 +20,10 @@ RUN dnf upgrade -y && dnf install -y \
     libarchive-devel \
     libcurl-devel \
     openssl-devel \
-    python
+    python \
+    bzip2 \
+    cpio \
+    zip
 
 # Download, build, and install boost from source
 ENV BOOST_MINOR_VERSION 64
