@@ -26,7 +26,7 @@ RUN dnf upgrade -y && dnf install -y \
     zip
 
 # Download, build, and install boost from source
-ENV BOOST_MINOR_VERSION 64
+ARG BOOST_MINOR_VERSION=64
 RUN mkdir /boost-Build \
     && curl -L https://sourceforge.net/projects/boost/files/boost/1.${BOOST_MINOR_VERSION}.0/boost_1_${BOOST_MINOR_VERSION}_0.tar.gz | \
     tar xz --strip-components=1 -C /boost-Build \
