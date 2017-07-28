@@ -20,7 +20,8 @@ RUN zypper --non-interactive install --no-recommends \
     libarchive-devel \
     libcurl-devel \
     libopenssl-devel \
-    python-devel
+    python-devel \
+    glibc-locale
 
 # Download, build, and install boost from source
 ARG BOOST_MINOR_VERSION=64
