@@ -23,7 +23,7 @@ RUN zypper --non-interactive install --no-recommends \
     python-devel
 
 # Download, build, and install boost from source
-ENV BOOST_MINOR_VERSION 64
+ARG BOOST_MINOR_VERSION=64
 RUN mkdir /boost-Build \
     && curl -L https://sourceforge.net/projects/boost/files/boost/1.${BOOST_MINOR_VERSION}.0/boost_1_${BOOST_MINOR_VERSION}_0.tar.gz | \
     tar xz --strip-components=1 -C /boost-Build \
@@ -34,7 +34,7 @@ RUN mkdir /boost-Build \
     
 # libantlr packages for this platform do not build with -fPIC
 # Download, build, and install antlr from source
-ENV ANTLR_SRC_URL http://www.antlr2.org/download/antlr-2.7.7.tar.gz
+ARG ANTLR_SRC_URL=http://www.antlr2.org/download/antlr-2.7.7.tar.gz
 RUN curl -L $ANTLR_SRC_URL | tar xz -C / \
     # Build and install antlr library (libantlr) from source
     && cd antlr-2.7.7 \
