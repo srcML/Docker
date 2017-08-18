@@ -1,8 +1,8 @@
-FROM srcml/ubuntu_x86_64_base:17.04
+FROM srcml/centos_x86_64_base:7.3
 
-RUN echo ubuntu_17.04_x86_64 > /name.txt
+RUN echo centos_7.3_x86_64 > /name.txt
 
-RUN apt-get install python-yaml -y
+RUN yum install python-yaml -y
 
 COPY lst_image.py /lst_image.py
 

@@ -1,27 +1,26 @@
-FROM ubuntu:17.04
+FROM centos:7.3.1611
 LABEL org.srcml.email="srcmldev@gmail.com" \
       org.srcml.url="srcml.org" \
-      org.srcml.distro="ubuntu" \
-      org.srcml.osversion="17.04" \
+      org.srcml.distro="centos" \
+      org.srcml.osversion="7.3.1611" \
       org.srcml.architecture="x86_64" \
       org.srcml.boost="1.64.0"
 
 # Update and install dependencies
-RUN apt-get update && apt-get install -y \
-    curl \
-    cpio \
-    zip \
-    g++ \
-    make \
-    antlr \
-    libantlr-dev \
-    libxml2-dev \
-    libxml2-utils \
-    libxslt1-dev \
-    libarchive-dev \
-    libssl-dev \
-    libcurl4-openssl-dev \
-    python-dev
+RUN yum update -y && yum install -y \
+  which \
+  zip \
+  gcc-c++ \
+  make \
+  antlr \
+  antlr-C++ \
+  libxml2 \
+  libxml2-devel \
+  libxslt-devel \
+  libarchive-devel \
+  openssl-devel \
+  libcurl-devel \
+  python-devel
 
 # Download and install a newer binary version of cmake
 ARG CMAKE_BIN_URL=https://cmake.org/files/v3.8/cmake-3.8.1-Linux-x86_64.tar.gz

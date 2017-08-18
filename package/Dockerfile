@@ -1,4 +1,4 @@
-FROM srcml/ubuntu_x86_64_base:17.04
+FROM srcml/centos_x86_64_base:7.3
 
 CMD ["/bin/bash", \
      "-c", \
@@ -7,6 +7,6 @@ CMD ["/bin/bash", \
       cmake /srcML; \
       make -j2; \
       cpack; \
-      cpack -G DEB; \
-      mv dist/srcML*.tar.gz /srcML_builds/ubuntu_17.04_x86_64.tar.gz; \
-      mv dist/srcML*.deb /srcML_builds/ubuntu_17.04_x86_64.deb "]
+      cpack -G RPM; \
+      mv dist/srcML*.tar.gz /srcML_builds/centos_7.3_x86_64.tar.gz; \
+      mv dist/srcML*.deb /srcML_builds/centos_7.3_x86_64.deb "]

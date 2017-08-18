@@ -1,10 +1,10 @@
-FROM srcml/ubuntu_x86_64_base:17.04
+FROM srcml/centos_x86_64_base:7.3
 
 WORKDIR /srcML-build
 
 CMD ["/bin/bash", \
      "-c", \
-      "cmake -DBUILD_CLIENT_TESTS=ON -DBUILD_UNIT_TESTS=OFF -DBUILD_TIMING_TESTS=OFF /srcML; \
+      "cmake -DBUILD_CLIENT_TESTS=ON /srcML; \
       make install; \
       ldconfig; \
-      ctest -VV -D Nightly -T MemCheck --overwrite Site='ubuntu_17.04_x86_64-client' "]
+      ctest -VV -D Nightly -T MemCheck --overwrite Site='centos_7.3_x86_64-client' "]
