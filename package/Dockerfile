@@ -1,6 +1,6 @@
 FROM srcml/centos_x86_64_base:7.3
 
-RUN yum update -y && yum install -y rpmbuild
+RUN yum update -y && yum install -y rpm-build
 
 CMD ["/bin/bash", \
      "-c", \
