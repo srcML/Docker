@@ -1,9 +1,10 @@
 FROM srcml/centos_x86_64_base:7.3
 
+RUN yum update -y && yum install -y rpmbuild
+
 CMD ["/bin/bash", \
      "-c", \
-     "yum install rpmbuild; \
-      mkdir /srcML-build; \
+     "mkdir /srcML-build; \
       cd /srcML-build; \
       cmake /srcML; \
       make -j2; \
