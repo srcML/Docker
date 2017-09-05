@@ -1,9 +1,10 @@
 FROM srcml/fedora_x86_64_base:rawhide
 
+RUN dnf upgrade -y && dnf install -y rpm-build
+
 CMD ["/bin/bash", \
      "-c", \
-     "dnf install -y rpmbuild; \
-      mkdir /srcML-build; \
+     "mkdir /srcML-build; \
       cd /srcML-build; \
       cmake /srcML; \
       make -j2; \
