@@ -1,9 +1,10 @@
 FROM srcml/opensuse_x86_64_base:42.1
 
+RUN zypper --non-interactive install --no-recommends rpm-build
+
 CMD ["/bin/bash", \
      "-c", \
-     "zypper --non-interactive install --no-recommends rpmbuild; \
-      mkdir /srcML-build; \
+     "mkdir /srcML-build; \
       cd /srcML-build; \
       cmake /srcML; \
       make -j2; \
