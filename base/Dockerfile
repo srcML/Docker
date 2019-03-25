@@ -1,8 +1,8 @@
-FROM ubuntu:18.04
+FROM ubuntu:18.10
 LABEL org.srcml.email="srcmldev@gmail.com" \
       org.srcml.url="srcml.org" \
       org.srcml.distro="ubuntu" \
-      org.srcml.osversion="18.04" \
+      org.srcml.osversion="18.10" \
       org.srcml.architecture="x86_64" \
       org.srcml.boost="1.67.0"
 
