@@ -1,4 +1,4 @@
-FROM ubuntu:17.10
+FROM ubuntu:19.04
 LABEL org.srcml.email="srcmldev@gmail.com" \
       org.srcml.url="srcml.org" \
       org.srcml.distro="ubuntu" \
