@@ -18,6 +18,7 @@ RUN dnf install -y \
     libarchive-devel \
     libcurl-devel \
     openssl-devel \
+    python2 \
     bzip2 \
     cpio \
     zip \
