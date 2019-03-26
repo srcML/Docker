@@ -4,7 +4,8 @@ LABEL org.srcml.email="srcmldev@gmail.com" \
       org.srcml.distro="centos" \
       org.srcml.osversion="7.3.1611" \
       org.srcml.architecture="x86_64" \
-      org.srcml.boost="1.64.0"
+      org.srcml.boost="1.69.0" \
+      org.srcml.cmake="3.8.2"
 
 # Update and install dependencies
 RUN yum update -y && yum install -y \
@@ -20,18 +21,20 @@ RUN yum update -y && yum install -y \
   libarchive-devel \
   openssl-devel \
   libcurl-devel \
-  python-devel
+  python \
+  && yum clean all \
+  && rm -rf /var/cache/yum
 
 # Download and install a newer binary version of cmake
-ARG CMAKE_BIN_URL=https://cmake.org/files/v3.8/cmake-3.8.1-Linux-x86_64.tar.gz
+ARG CMAKE_BIN_URL=https://cmake.org/files/v3.8/cmake-3.8.2-Linux-x86_64.tar.gz
 RUN curl -L $CMAKE_BIN_URL | tar xz --strip-components=1 -C /usr/local/
 
 # Download, build, and install boost from source
-ARG BOOST_MINOR_VERSION=64
+ARG BOOST_MINOR_VERSION=69
 RUN mkdir /boost-Build \
     && curl -L https://sourceforge.net/projects/boost/files/boost/1.${BOOST_MINOR_VERSION}.0/boost_1_${BOOST_MINOR_VERSION}_0.tar.gz | \
     tar xz --strip-components=1 -C /boost-Build \
     && cd /boost-Build \
-    && ./bootstrap.sh --with-libraries=program_options,filesystem,thread,date_time \
+    && ./bootstrap.sh --with-libraries=program_options \
     && ./b2 link=static cxxflags="-fPIC -static -Wl,--whole-archive" threading=multi install \
     && rm -fR /boost-Build
