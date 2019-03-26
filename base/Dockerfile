@@ -1,14 +1,14 @@
-FROM centos:7.3.1611
+FROM centos:7
 LABEL org.srcml.email="srcmldev@gmail.com" \
       org.srcml.url="srcml.org" \
       org.srcml.distro="centos" \
-      org.srcml.osversion="7.3.1611" \
+      org.srcml.osversion="7" \
       org.srcml.architecture="x86_64" \
       org.srcml.boost="1.69.0" \
       org.srcml.cmake="3.8.2"
 
 # Update and install dependencies
-RUN yum update -y && yum install -y \
+RUN yum install -y \
   which \
   zip \
   gcc-c++ \
