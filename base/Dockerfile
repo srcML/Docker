@@ -1,8 +1,8 @@
-FROM ubuntu:18.10
+FROM ubuntu:rolling
 LABEL org.srcml.email="srcmldev@gmail.com" \
       org.srcml.url="srcml.org" \
       org.srcml.distro="ubuntu" \
-      org.srcml.osversion="18.10" \
+      org.srcml.osversion="rolling" \
       org.srcml.architecture="x86_64" \
       org.srcml.cmake="3.8.2" \
       org.srcml.boost="1.69.0"
