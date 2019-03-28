@@ -6,7 +6,6 @@ LABEL org.srcml.email="srcmldev@gmail.com" \
       org.srcml.architecture="x86_64" \
       org.srcml.boost="1.67.0"
 
-
 # Update and install dependencies
 RUN apt-get update && apt-get install -y \
     curl \
@@ -24,7 +23,7 @@ RUN apt-get update && apt-get install -y \
     python-dev
 
 # Download and install a newer binary version of cmake
-ARG CMAKE_BIN_URL=https://cmake.org/files/v3.8/cmake-3.8.2-Linux-x86_64.tar.gz
+ARG CMAKE_BIN_URL=https://cmake.org/files/v3.8/cmake-3.8.1-Linux-x86_64.tar.gz
 RUN curl -L $CMAKE_BIN_URL | tar xz --strip-components=1 -C /usr/local/
 
 # Download, build, and install boost from source
