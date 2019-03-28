@@ -6,6 +6,7 @@ LABEL org.srcml.email="srcmldev@gmail.com" \
       org.srcml.architecture="x86_64" \
       org.srcml.boost="1.67.0"
 
+
 # Update and install dependencies
 RUN apt-get update && apt-get install -y \
     curl \
