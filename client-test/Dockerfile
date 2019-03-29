@@ -8,7 +8,7 @@ LABEL org.srcml.email="srcmldev@gmail.com" \
 
 WORKDIR /srcML-build
 
-ARG OS_VERSION=17.10
+ARG OS_VERSION=19.04
 CMD ["/bin/bash", \
      "-c", \
       "cmake -DBUILD_CLIENT_TESTS=ON -DBUILD_LIBSRCML_TESTS=OFF -DBUILD_PARSER_TESTS=OFF /srcML; \
