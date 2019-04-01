@@ -37,3 +37,4 @@ RUN mkdir /boost-Build \
     && ./bootstrap.sh --with-libraries=program_options \
     && ./b2 link=static cxxflags="-fPIC -static -Wl,--whole-archive" threading=multi install \
     && rm -fR /boost-Build
+
