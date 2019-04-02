@@ -1,6 +1,6 @@
-FROM srcml/opensuse_x86_64_base:42.1
+FROM srcml/opensuse_x86_64_base:latest
 
-RUN echo opensuse_42.1_x86_64 > /name.txt
+RUN echo opensuse_latest_x86_64 > /name.txt
 
 RUN zypper --non-interactive install --no-recommends python-yaml
 
