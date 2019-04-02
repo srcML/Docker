@@ -1,10 +1,10 @@
-FROM opensuse:42.1
+FROM opensuse:42
 LABEL org.srcml.email="srcmldev@gmail.com" \
       org.srcml.url="srcml.org" \
       org.srcml.distro="opensuse" \
-      org.srcml.osversion="42.1" \
+      org.srcml.osversion="42" \
       org.srcml.architecture="x86_64" \
-      org.srcml.boost="1.64.0" \
+      org.srcml.boost="1.69.0" \
       org.srcml.antlr="2.7.7"
 
 # Update and install dependencies
@@ -24,7 +24,7 @@ RUN zypper --non-interactive install --no-recommends \
     glibc-locale
 
 # Download, build, and install boost from source
-ARG BOOST_MINOR_VERSION=64
+ARG BOOST_MINOR_VERSION=69
 RUN mkdir /boost-Build \
     && curl -L https://sourceforge.net/projects/boost/files/boost/1.${BOOST_MINOR_VERSION}.0/boost_1_${BOOST_MINOR_VERSION}_0.tar.gz | \
     tar xz --strip-components=1 -C /boost-Build \
