@@ -1,8 +1,8 @@
-FROM opensuse/leap:15
+FROM opensuse/leap:15.0
 LABEL org.srcml.email="srcmldev@gmail.com" \
       org.srcml.url="srcml.org" \
       org.srcml.distro="opensuse" \
-      org.srcml.osversion="15" \
+      org.srcml.osversion="15.0" \
       org.srcml.architecture="x86_64" \
       org.srcml.boost="1.69.0" \
       org.srcml.antlr="2.7.7"
