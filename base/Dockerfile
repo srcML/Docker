@@ -1,10 +1,10 @@
-FROM opensuse/leap:15.1
+FROM opensuse/leap:15
 LABEL org.srcml.email="srcmldev@gmail.com" \
       org.srcml.url="srcml.org" \
       org.srcml.distro="opensuse" \
-      org.srcml.osversion="15.1" \
+      org.srcml.osversion="15" \
       org.srcml.architecture="x86_64" \
-      org.srcml.boost="1.64.0" \
+      org.srcml.boost="1.69.0" \
       org.srcml.antlr="2.7.7"
 
 # Update and install dependencies
