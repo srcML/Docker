@@ -1,8 +1,8 @@
-FROM fedora:30
+FROM fedora:28
 LABEL org.srcml.email="srcmldev@gmail.com" \
       org.srcml.url="srcml.org" \
       org.srcml.distro="fedora" \
-      org.srcml.osversion="30" \
+      org.srcml.osversion="28" \
       org.srcml.architecture="x86_64" \
       org.srcml.boost="1.69.0" \
       org.srcml.cmake="3.8.2"
