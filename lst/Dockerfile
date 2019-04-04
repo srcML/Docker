@@ -1,6 +1,6 @@
-FROM srcml/opensuse_x86_64_base:15.1
+FROM srcml/opensuse_x86_64_base:15.0
 
-RUN echo opensuse_15.1_x86_64 > /name.txt
+RUN echo opensuse_15.0_x86_64 > /name.txt
 
 RUN zypper --non-interactive install --no-recommends python-yaml
 
