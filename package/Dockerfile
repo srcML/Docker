@@ -1,4 +1,4 @@
-FROM srcml/fedora_x86_64_base:24
+FROM srcml/fedora_x86_64_base:29
 
 RUN dnf upgrade -y && dnf install -y rpm-build
 
@@ -10,5 +10,5 @@ CMD ["/bin/bash", \
       make -j2; \
       cpack; \
       cpack -G RPM; \
-      mv dist/srcML*.tar.gz /srcML_builds/fedora_24_x86_64.tar.gz; \
-      mv dist/srcML*.rpm /srcML_builds/fedora_24_x86_64.rpm "]
+      mv dist/srcML*.tar.gz /srcML_builds/fedora_29_x86_64.tar.gz; \
+      mv dist/srcML*.rpm /srcML_builds/fedora_29_x86_64.rpm "]
