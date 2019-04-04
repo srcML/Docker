@@ -1,6 +1,6 @@
-FROM srcml/ubuntu_x86_64_base:17.10
+FROM srcml/ubuntu_x86_64_base:devel
 
-RUN echo ubuntu_17.10_x86_64 > /name.txt
+RUN echo ubuntu_devel_x86_64 > /name.txt
 
 RUN apt-get install python-yaml -y
 
