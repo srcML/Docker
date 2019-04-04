@@ -1,6 +1,6 @@
-FROM srcml/ubuntu_x86_64_base:18.04
+FROM srcml/ubuntu_x86_64_base:rolling
 
-RUN echo ubuntu_18.04_x86_64 > /name.txt
+RUN echo ubuntu_rolling_x86_64 > /name.txt
 
 RUN apt-get install python-yaml -y
 
