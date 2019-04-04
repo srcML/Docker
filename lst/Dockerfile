@@ -1,6 +1,6 @@
-FROM srcml/fedora_x86_64_base:24
+FROM srcml/fedora_x86_64_base:latest
 
-RUN echo fedora_24_x86_64 > /name.txt
+RUN echo fedora_latest_x86_64 > /name.txt
 
 RUN dnf install -y python-yaml
 
