@@ -1,6 +1,6 @@
-FROM srcml/centos_x86_64_base:7.0.1406
+FROM srcml/centos_x86_64_base:oldest
 
-RUN echo centos_7.0.1406_x86_64 > /name.txt
+RUN echo centos_oldest_x86_64 > /name.txt
 
 RUN yum install python-yaml -y
 
