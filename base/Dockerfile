@@ -1,8 +1,8 @@
-FROM centos:7
+FROM centos:7.5.1804
 LABEL org.srcml.email="srcmldev@gmail.com" \
       org.srcml.url="srcml.org" \
       org.srcml.distro="centos" \
-      org.srcml.osversion="7" \
+      org.srcml.osversion="7.5.1804" \
       org.srcml.architecture="x86_64" \
       org.srcml.boost="1.69.0" \
       org.srcml.cmake="3.8.2"
