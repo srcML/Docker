@@ -5,7 +5,7 @@ LABEL org.srcml.email="srcmldev@gmail.com" \
       org.srcml.osversion="7.4.1708" \
       org.srcml.architecture="x86_64" \
       org.srcml.boost="1.69.0" \
-      org.srcml.cmake="3.8.2"
+      org.srcml.cmake="3.14.1"
 
 # Update and install dependencies
 RUN yum install -y \
