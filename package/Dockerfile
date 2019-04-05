@@ -1,4 +1,4 @@
-FROM srcml/centos_x86_64_base:7
+FROM srcml/centos_x86_64_base:7.1.1503
 
 RUN yum update -y && yum install -y rpm-build
 
@@ -10,5 +10,5 @@ CMD ["/bin/bash", \
       make -j2; \
       cpack; \
       cpack -G RPM; \
-      mv dist/srcML*.tar.gz /srcML_builds/centos_7_x86_64.tar.gz; \
-      mv dist/srcML*.rpm /srcML_builds/centos_7_x86_64.rpm "]
+      mv dist/srcML*.tar.gz /srcML_builds/centos_7.1.1503_x86_64.tar.gz; \
+      mv dist/srcML*.rpm /srcML_builds/centos_7.1.1503_x86_64.rpm "]
