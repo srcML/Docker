@@ -13,7 +13,6 @@ RUN zypper --non-interactive install --no-recommends \
     tar \
     zip \
     gcc-c++ \
-    cmake \
     java-headless \
     libxml2-devel \
     libxslt-devel \
@@ -22,6 +21,10 @@ RUN zypper --non-interactive install --no-recommends \
     libopenssl-devel \
     python-devel \
     glibc-locale
+
+# Download and install a newer binary version of cmake
+ARG CMAKE_BIN_URL=https://cmake.org/files/v3.14/cmake-3.14.1-Linux-x86_64.tar.gz
+RUN curl -L $CMAKE_BIN_URL | tar xz --strip-components=1 -C /usr/local/
 
 # Download, build, and install boost from source
 ARG BOOST_MINOR_VERSION=69
