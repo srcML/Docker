@@ -13,7 +13,6 @@ RUN yum install -y \
     zip \
     gcc-c++ \
     make \
-    cmake \
     antlr \
     antlr-C++ \
     libxml2 \
@@ -25,6 +24,10 @@ RUN yum install -y \
     python \
     && yum clean all \
     && rm -rf /var/cache/yum
+
+# Download and install a newer binary version of cmake
+ARG CMAKE_BIN_URL=https://cmake.org/files/v3.14/cmake-3.14.1-Linux-x86_64.tar.gz
+RUN curl -L $CMAKE_BIN_URL | tar xz --strip-components=1 -C /usr/local/
 
 # Download, build, and install boost from source
 ARG BOOST_MINOR_VERSION=69
