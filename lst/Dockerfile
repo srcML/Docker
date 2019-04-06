@@ -1,6 +1,6 @@
-FROM srcml/opensuse_x86_64_base:earliest
+FROM srcml/opensuse_x86_64_base:oldest
 
-RUN echo opensuse_earliest_x86_64 > /name.txt
+RUN echo opensuse_oldest_x86_64 > /name.txt
 
 RUN zypper --non-interactive install --no-recommends python-yaml
 
