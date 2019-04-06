@@ -1,4 +1,4 @@
-FROM srcml/ubuntu_x86_64_base:earliest
+FROM srcml/ubuntu_x86_64_base:oldest
 
 CMD ["/bin/bash", \
      "-c", \
@@ -8,5 +8,5 @@ CMD ["/bin/bash", \
       make -j2; \
       cpack; \
       cpack -G DEB; \
-      mv dist/srcML*.tar.gz /srcML_builds/ubuntu_earliest_x86_64.tar.gz; \
-      mv dist/srcML*.deb /srcML_builds/ubuntu_earliest_x86_64.deb "]
+      mv dist/srcML*.tar.gz /srcML_builds/ubuntu_oldest_x86_64.tar.gz; \
+      mv dist/srcML*.deb /srcML_builds/ubuntu_oldest_x86_64.deb "]

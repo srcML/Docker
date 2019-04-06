@@ -1,8 +1,8 @@
-FROM srcml/ubuntu_x86_64_base:earliest
+FROM srcml/ubuntu_x86_64_base:oldest
 
 WORKDIR /srcML-build
 
-RUN echo ubuntu_earliest_x86_64 > /name.txt
+RUN echo ubuntu_oldest_x86_64 > /name.txt
 
 RUN apt-get install python-yaml -y
 
