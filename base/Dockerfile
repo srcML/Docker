@@ -14,6 +14,8 @@ RUN zypper --non-interactive install --no-recommends \
     tar \
     gzip \
     gcc-c++ \
+    make \
+    which \
     java-headless \
     libxml2-devel \
     libxslt-devel \
