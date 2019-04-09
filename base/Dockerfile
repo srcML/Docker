@@ -4,6 +4,7 @@ LABEL org.srcml.email="srcmldev@gmail.com" \
       org.srcml.distro="fedora" \
       org.srcml.osversion="26" \
       org.srcml.architecture="x86_64" \
+      org.srcml.cmake="3.14.1" \
       org.srcml.boost="1.69.0"
 
 # Update and install dependencies
@@ -23,8 +24,12 @@ RUN dnf install -y \
     python \
     bzip2 \
     cpio \
-	zip \
+	  zip \
     && dnf clean all
+
+# Download and install a newer binary version of cmake
+ARG CMAKE_BIN_URL=https://cmake.org/files/v3.14/cmake-3.14.1-Linux-x86_64.tar.gz
+RUN curl -L $CMAKE_BIN_URL | tar xz --strip-components=1 -C /usr/local/
 
 # Download, build, and install boost from source
 ARG BOOST_MINOR_VERSION=69
