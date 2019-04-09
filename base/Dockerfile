@@ -13,7 +13,6 @@ RUN dnf install -y \
     curl \
     gcc-c++ \
     make \
-    cmake \
     antlr \
     antlr-C++ \
     libxml2-devel \
