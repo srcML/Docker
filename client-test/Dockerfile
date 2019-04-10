@@ -12,6 +12,6 @@ ARG OS_VERSION=latest
 CMD ["/bin/bash", \
      "-c", \
       "cmake -DBUILD_CLIENT_TESTS=ON -DBUILD_LIBSRCML_TESTS=OFF -DBUILD_PARSER_TESTS=OFF /srcML; \
-      make install; \
+      make -j 4 install; \
       ldconfig; \
-      ctest -VV -D Nightly -T MemCheck --overwrite Site='ubuntu_${OS_VERSION}_x86_64-client' "]
+      ctest -R ^archive.sh$ -VV -D Nightly -T MemCheck --overwrite Site='ubuntu_latest_demo_x86_64-client' "]
