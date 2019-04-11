@@ -1,6 +1,6 @@
 FROM srcml/opensuse_x86_64_base:15.1
 
-RUN zypper --non-interactive install --no-recommends rpm-build
+RUN zypper ref && zypper --non-interactive install --no-recommends rpm-build
 
 CMD ["/bin/bash", \
      "-c", \
