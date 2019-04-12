@@ -1,5 +1,9 @@
 FROM srcml/ubuntu_x86_64_base:latest
 
+RUN apt-get update && apt-get install --no-install-recommends -y \
+    debhelper \
+    && rm -rf /var/lib/apt/lists/*
+
 CMD ["/bin/bash", \
      "-c", \
      "mkdir /srcML-build; \
