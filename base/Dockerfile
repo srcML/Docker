@@ -38,7 +38,7 @@ RUN mkdir /boost-Build \
     && ./bootstrap.sh --with-libraries=program_options,filesystem,thread,date_time \
     && ./b2 link=static cxxflags="-fPIC -static -Wl,--whole-archive" threading=multi install \
     && rm -fR /boost-Build
-    
+
 # libantlr packages for this platform do not build with -fPIC
 # Download, build, and install antlr from source
 ARG ANTLR_SRC_URL=http://www.antlr2.org/download/antlr-2.7.7.tar.gz
