@@ -54,7 +54,7 @@ RUN curl -L $ANTLR_SRC_URL | tar xz -C / \
     # Insert #include <string.h> in CharScanner.hpp
     && sed -i -e '1 i\#include <string.h>' lib/cpp/antlr/CharScanner.hpp \
     # build and install
-    && ./configure --disable-examples && make install \
+    && ./configure --disable-csharp --disable-python --disable-java --disable-examples && make install \
     && cp antlr.jar /usr/share/java/. \
     # remove build files
     && rm -fR /antlr-2.7.7
