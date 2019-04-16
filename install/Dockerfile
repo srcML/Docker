@@ -1,13 +1,12 @@
 FROM fedora:latest
 
-# Install man pages
-# Install findutils to get xargs
-# Allow man pages to be installed
+# Install man pages, and findutils for xargs
 RUN dnf install -y man findutils && \
+	# allow install of man pages
 	sed -i 's|\(tsflags=nodocs\)|#\1|g' /etc/dnf/dnf.conf
 
-ENV RPM=fedora_latest_x86_64.rpm
-ENV RPMPATH=/srcML_builds/${RPM}
+ENV RPM=fedora_latest_x86_64
+ENV RPMPATH=/srcML_builds/${RPM}.rpm
 
 CMD ["/bin/bash", "-c", \
      "dnf install -y ${RPMPATH} --disablerepo=updates; \
