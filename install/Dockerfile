@@ -1,7 +1,8 @@
 FROM fedora:latest
 
-# update zypper, and allow man pages to be installed
-#	sed -i 's|\(rpm.install.excludedocs\)|#\1|g' /etc/zypp/zypp.conf && \
+# Install man pages
+# Install findutils to get xargs
+# Allow man pages to be installed
 RUN dnf install -y man findutils && \
 	sed -i 's|\(tsflags=nodocs\)|#\1|g' /etc/dnf/dnf.conf
 
