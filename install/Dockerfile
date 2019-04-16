@@ -10,8 +10,9 @@ ENV RPM=fedora_latest_x86_64.rpm
 ENV RPMPATH=/srcML_builds/${RPM}
 
 CMD ["/bin/bash", "-c", \
-     "dnf install -y ${RPMPATH}; \
+     "dnf install -y ${RPMPATH} --disablerepo=updates; \
      srcml --text='a;' -l C++; \
      rpm -ql ${RPMPATH} | grep -v '.build-id' | xargs ls -lhd ; \
      man srcml | wc --lines; \
+     man srcml | head; \
      "]
