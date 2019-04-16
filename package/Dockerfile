@@ -2,8 +2,7 @@ FROM srcml/fedora_x86_64_base:latest
 
 RUN dnf upgrade -y && dnf install -y rpm-build
 
-CMD ["/bin/bash", \
-     "-c", \
+CMD ["/bin/bash", "-c", \
      "mkdir /srcML-build; \
       cd /srcML-build; \
       cmake /srcML -DCMAKE_BUILD_TYPE=Release; \
