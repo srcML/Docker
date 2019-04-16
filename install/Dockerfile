@@ -14,4 +14,5 @@ CMD ["/bin/bash", "-c", \
      srcml --text='a;' -l C++; \
      rpm -ql ${RPMPATH} | xargs ls -lhd ; \
      man srcml | wc --lines; \
+     man srcml | head; \
      "]
