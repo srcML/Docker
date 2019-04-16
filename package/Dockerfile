@@ -2,11 +2,10 @@ FROM srcml/centos_x86_64_base:latest
 
 RUN yum update -y && yum install -y rpm-build
 
-CMD ["/bin/bash", \
-     "-c", \
+CMD ["/bin/bash", "-c", \
      "mkdir /srcML-build; \
       cd /srcML-build; \
-      cmake /srcML; \
+      cmake /srcML -DCMAKE_BUILD_TYPE=Release; \
       make -j2; \
       cpack; \
       cpack -G RPM; \
