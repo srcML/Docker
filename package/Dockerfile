@@ -6,7 +6,7 @@ CMD ["/bin/bash", \
      "-c", \
      "mkdir /srcML-build; \
       cd /srcML-build; \
-      cmake /srcML; \
+      cmake /srcML -DCMAKE_BUILD_TYPE=Release; \
       make -j2; \
       cpack; \
       cpack -G RPM; \
