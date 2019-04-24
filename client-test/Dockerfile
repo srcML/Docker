@@ -6,6 +6,8 @@ LABEL org.srcml.email="srcmldev@gmail.com" \
       org.srcml.architecture="x86_64" \
       org.srcml.purpose="client-test"
 
+RUN apt-get update && apt-get install cpio
+
 WORKDIR /srcML-build
 
 CMD ["/bin/bash", "-c", \
@@ -13,5 +15,7 @@ CMD ["/bin/bash", "-c", \
       make -j 4 install; \
       ldconfig; \
       ctest -VV --no-compress-output -T Test; \
-      find . -name 'Test.xml' | xargs -I% cp % /srcML_builds/. \
+      find . -name 'Test.xml'; \
+      find . -name 'Test.xml' | xargs -t -I% cp % /PublishTest/.; \
+      ls -alh /PublishTest; \
      "]
