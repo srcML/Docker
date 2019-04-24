@@ -14,4 +14,6 @@ CMD ["/bin/bash", \
       "cmake -DBUILD_CLIENT_TESTS=ON -DBUILD_LIBSRCML_TESTS=OFF -DBUILD_PARSER_TESTS=OFF /srcML; \
       make -j 4 install; \
       ldconfig; \
-      ctest -VV --no-compress-output -T Test"]
+      ctest -VV --no-compress-output -T Test; \
+      find . -name "Test.xml" | xargs -I% cp % /srcML_builds/. \
+      "]
