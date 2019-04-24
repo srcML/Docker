@@ -8,12 +8,10 @@ LABEL org.srcml.email="srcmldev@gmail.com" \
 
 WORKDIR /srcML-build
 
-ARG OS_VERSION=latest
-CMD ["/bin/bash", \
-     "-c", \
+CMD ["/bin/bash", "-c", \
       "cmake -DBUILD_CLIENT_TESTS=ON -DBUILD_LIBSRCML_TESTS=OFF -DBUILD_PARSER_TESTS=OFF /srcML; \
       make -j 4 install; \
       ldconfig; \
       ctest -VV --no-compress-output -T Test; \
-      find . -name "Test.xml" | xargs -I% cp % /srcML_builds/. \
-      "]
+      find . -name 'Test.xml' | xargs -I% cp % /srcML_builds/. \
+     "]
