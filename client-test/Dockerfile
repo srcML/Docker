@@ -14,4 +14,4 @@ CMD ["/bin/bash", \
       "cmake -DBUILD_CLIENT_TESTS=ON -DBUILD_LIBSRCML_TESTS=OFF -DBUILD_PARSER_TESTS=OFF /srcML; \
       make -j 4 install; \
       ldconfig; \
-      ctest -VV -D Nightly -T MemCheck --overwrite Site='ubuntu_demo_x86_64-client' "]
+      ctest -VV -T Test"]
