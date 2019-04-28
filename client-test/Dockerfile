@@ -2,7 +2,6 @@ FROM srcml/centos_x86_64_base:latest
 
 WORKDIR /srcML-build
 
-
 CMD ["/bin/bash", \
      "-c", \
       "cmake -DBUILD_CLIENT_TESTS=ON /srcML; \
