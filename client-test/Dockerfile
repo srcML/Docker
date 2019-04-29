@@ -10,13 +10,11 @@ RUN apt-get update && apt-get install cpio
 
 WORKDIR /srcML-build
 
-ARG BUILD=ubuntu_latest
-CMD ["/bin/bash", "-c", \
-      "cmake -DBUILD_CLIENT_TESTS=ON -DBUILD_LIBSRCML_TESTS=OFF -DBUILD_PARSER_TESTS=OFF /srcML; \
-      make -j 4 install; \
+CMD ["/bin/bash", \
+     "-c", \
+  	 "cmake -DBUILD_CLIENT_TESTS=ON -DBUILD_LIBSRCML_TESTS=OFF -DBUILD_PARSER_TESTS=OFF -DBUILD_EXAMPLES=OFF /srcML; \
+	  make install; \
       ldconfig; \
-      ctest -VV --no-compress-output -T Test; \
-      find . -name 'Test.xml'; \
-      find . -name 'Test.xml' | xargs -t -I% cp % /PublishTest/${BUILD}-.; \
-      ls -alh /PublishTest; \
-     "]
+      ctest -VV -D Nightly -T MemCheck --overwrite Site='ubuntu_x86_64-client'; \
+      find . -name 'Test.xml' | xargs -t -I% cp % /PublishTest/$(find . -name "Test.xml" | head -1 | xargs sha1sum | cut -c1-6)-Test.xml \
+      "]
