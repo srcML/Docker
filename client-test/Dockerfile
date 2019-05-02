@@ -1,5 +1,7 @@
 FROM srcml/centos_x86_64_base:latest
 
+ENV PLATFORM=centos:latest
+
 WORKDIR /srcML-build
 
 CMD ["/bin/bash", \
