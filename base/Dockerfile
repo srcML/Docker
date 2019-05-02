@@ -8,6 +8,8 @@ LABEL org.srcml.email="srcmldev@gmail.com" \
       org.srcml.boost="1.69.0" \
       org.srcml.antlr="2.7.7"
 
+ENV PLATFORM=opensuse:latest
+
 # Update and install dependencies
 RUN zypper --non-interactive install --no-recommends \
     curl \
