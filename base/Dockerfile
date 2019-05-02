@@ -7,6 +7,8 @@ LABEL org.srcml.email="srcmldev@gmail.com" \
       org.srcml.cmake="3.14.1" \
       org.srcml.boost="1.69.0"
 
+ENV PLATFORM=ubuntu:latest
+
 # Update and install dependencies
 RUN apt-get update && apt-get install --no-install-recommends -y \
     curl \
