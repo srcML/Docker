@@ -7,6 +7,8 @@ LABEL org.srcml.email="srcmldev@gmail.com" \
       org.srcml.cmake="3.14.1" \
       org.srcml.boost="1.69.0"
 
+ENV PLATFORM=fedora:latest
+
 # Install dependencies
 RUN dnf install -y \
     tar \
