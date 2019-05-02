@@ -7,6 +7,8 @@ LABEL org.srcml.email="srcmldev@gmail.com" \
       org.srcml.boost="1.69.0" \
       org.srcml.cmake="3.14.1"
 
+ENV PLATFORM=centos:latest
+
 # Update and install dependencies
 RUN yum install -y \
     which \
