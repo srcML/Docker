@@ -8,6 +8,7 @@ LABEL org.srcml.email="srcmldev@gmail.com" \
       org.srcml.cmake="3.14.1"
 
 ENV PLATFORM=centos:latest
+ENV SETUP='cmake -DCMAKE_INSTALL_PREFIX=/usr'
 
 # Update and install dependencies
 RUN yum install -y \
