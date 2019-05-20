@@ -24,6 +24,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     libarchive-dev \
     libssl-dev \
     libcurl4-openssl-dev \
+    cpio \
     python \
     && rm -rf /var/lib/apt/lists/*
 
