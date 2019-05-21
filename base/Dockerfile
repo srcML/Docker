@@ -14,6 +14,7 @@ ENV SETUP='cmake -DCMAKE_INSTALL_PREFIX=/usr;'
 RUN yum install -y \
     which \
     zip \
+    unzip \
     gcc-c++ \
     make \
     cmake \
