@@ -17,6 +17,7 @@ RUN zypper --non-interactive install --no-recommends \
     gzip \
     gcc-c++ \
     make \
+    ninja \
     which \
     java-headless \
     libxml2-devel \
