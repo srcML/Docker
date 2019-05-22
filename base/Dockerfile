@@ -15,6 +15,7 @@ RUN dnf install -y \
     tar \
     gcc-c++ \
     make \
+    ninja \
     antlr \
     antlr-C++ \
     libxml2-devel \
