@@ -12,9 +12,10 @@ LABEL org.srcml.email="srcmldev@gmail.com" \
 RUN zypper --non-interactive install --no-recommends \
     curl \
     tar \
-    zip \
+    gzip \
     gcc-c++ \
     make \
+    ninja \
     which \
     java-headless \
     libxml2-devel \
@@ -22,8 +23,9 @@ RUN zypper --non-interactive install --no-recommends \
     libarchive-devel \
     libcurl-devel \
     libopenssl-devel \
-    python-devel \
-    glibc-locale \
+    zip \
+    bzip2 \
+    man \
     && zypper clean -a
 
 # Download and install a newer binary version of cmake
