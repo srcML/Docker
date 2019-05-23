@@ -8,14 +8,13 @@ LABEL org.srcml.email="srcmldev@gmail.com" \
       org.srcml.boost="1.69.0"
 
 ENV PLATFORM=fedora:latest
-ENV SETUP='cmake -DCMAKE_INSTALL_PREFIX=/usr;'
 
 # Install dependencies
 RUN dnf install -y \
     tar \
     gcc-c++ \
     make \
-    ninja \
+    ninja-build \
     antlr \
     antlr-C++ \
     libxml2-devel \
@@ -27,6 +26,7 @@ RUN dnf install -y \
     bzip2 \
     cpio \
     zip \
+    man \
     && dnf clean all
 
 # Download and install a newer binary version of cmake
