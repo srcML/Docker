@@ -25,7 +25,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     libssl-dev \
     libcurl4-openssl-dev \
     cpio \
-    python \
+    man \
     && rm -rf /var/lib/apt/lists/*
 
 # Download and install a newer binary version of cmake
@@ -35,3 +35,6 @@ RUN curl -L $CMAKE_BIN_URL | tar xz --strip-components=1 -C /usr/local/
 # Download and install only needed boost files
 RUN curl -L http://www.sdml.cs.kent.edu/build/srcML-1.0.0-Boost.tar.gz | \
     tar xz -C /usr/local/include
+
+# Allow man pages to be installed
+RUN sed -i '/path-exclude=\/usr\/share\/man\/*/c\#path-exclude=\/usr\/share\/man\/*' /etc/dpkg/dpkg.cfg.d/excludes
