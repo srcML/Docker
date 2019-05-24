@@ -11,6 +11,7 @@ LABEL org.srcml.email="srcmldev@gmail.com" \
 RUN yum install -y \
     which \
     zip \
+    unzip \
     gcc-c++ \
     make \
     antlr \
@@ -21,7 +22,8 @@ RUN yum install -y \
     libarchive-devel \
     openssl-devel \
     libcurl-devel \
-    python \
+    bzip2 \
+    rpm-build \
     && yum clean all \
     && rm -rf /var/cache/yum
 
