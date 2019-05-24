@@ -29,6 +29,7 @@ RUN yum install -y \
     && yum clean all \
     && rm -rf /var/cache/yum
 
+
 # Install ninja
 RUN curl -L -O https://github.com/ninja-build/ninja/releases/download/v1.8.2/ninja-linux.zip \
     && unzip ninja-linux.zip \
