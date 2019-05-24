@@ -1,4 +1,4 @@
-FROM fedora:latest
+wwFROM fedora:latest
 LABEL org.srcml.email="srcmldev@gmail.com" \
       org.srcml.url="srcml.org" \
       org.srcml.distro="fedora" \
@@ -8,7 +8,6 @@ LABEL org.srcml.email="srcmldev@gmail.com" \
       org.srcml.boost="1.69.0"
 
 ENV PLATFORM=fedora:latest
-ENV SETUP='cmake -DCMAKE_INSTALL_PREFIX=/usr;'
 
 # Install dependencies
 RUN dnf install -y \
@@ -28,6 +27,7 @@ RUN dnf install -y \
     cpio \
     zip \
     rpm-build \
+    man \
     && dnf clean all
 
 # Download and install a newer binary version of cmake
