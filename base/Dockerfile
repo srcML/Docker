@@ -15,7 +15,7 @@ RUN dnf install -y \
     tar \
     gcc-c++ \
     make \
-    ninja \
+    ninja-build \
     antlr \
     antlr-C++ \
     libxml2-devel \
@@ -27,6 +27,7 @@ RUN dnf install -y \
     bzip2 \
     cpio \
     zip \
+    rpm-build \
     && dnf clean all
 
 # Download and install a newer binary version of cmake
