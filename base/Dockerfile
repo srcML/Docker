@@ -25,6 +25,12 @@ RUN yum install -y \
     && yum clean all \
     && rm -rf /var/cache/yum
 
+# Install ninja
+RUN curl -L -O https://github.com/ninja-build/ninja/releases/download/v1.8.2/ninja-linux.zip \
+    && unzip ninja-linux.zip \
+    && mv ninja /usr/local/bin/. \
+    && rm -fR ninja-linux
+
 # Download and install a newer binary version of cmake
 ARG CMAKE_BIN_URL=https://cmake.org/files/v3.14/cmake-3.14.1-Linux-x86_64.tar.gz
 RUN curl -L $CMAKE_BIN_URL | tar xz --strip-components=1 -C /usr/local/
