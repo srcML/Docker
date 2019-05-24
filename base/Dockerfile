@@ -21,7 +21,9 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     libarchive-dev \
     libssl-dev \
     libcurl4-openssl-dev \
-    python \
+    cpio \
+    man \
+    file \
     && rm -rf /var/lib/apt/lists/*
 
 # Download and install a newer binary version of cmake
