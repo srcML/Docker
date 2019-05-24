@@ -9,12 +9,12 @@ LABEL org.srcml.email="srcmldev@gmail.com" \
 
 ENV PLATFORM=fedora:oldest
 
-# Update and install dependencies
+# Install dependencies
 RUN dnf install -y \
     tar \
-    curl \
     gcc-c++ \
     make \
+    ninja-build \
     antlr \
     antlr-C++ \
     libxml2-devel \
@@ -22,10 +22,11 @@ RUN dnf install -y \
     libarchive-devel \
     libcurl-devel \
     openssl-devel \
-    python \
+    python2 \
     bzip2 \
     cpio \
     zip \
+    man \
     && dnf clean all
 
 # Download and install a newer binary version of cmake
