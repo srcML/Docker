@@ -28,6 +28,7 @@ RUN zypper --non-interactive install --no-recommends \
     zip \
     bzip2 \
     man \
+    rpm-build \
     && zypper clean -a
 
 # Download and install a newer binary version of cmake
