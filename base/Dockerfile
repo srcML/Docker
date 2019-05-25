@@ -25,6 +25,7 @@ RUN yum install -y \
     openssl-devel \
     libcurl-devel \
     bzip2 \
+    man \
     rpm-build \
     && yum clean all \
     && rm -rf /var/cache/yum
