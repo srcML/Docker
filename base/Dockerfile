@@ -8,7 +8,6 @@ LABEL org.srcml.email="srcmldev@gmail.com" \
       org.srcml.cmake="3.14.1"
 
 ENV PLATFORM=centos:oldest
-ENV SETUP='cmake -DCMAKE_INSTALL_PREFIX=/usr;'
 
 # Update and install dependencies
 RUN yum install -y \
@@ -17,7 +16,6 @@ RUN yum install -y \
     unzip \
     gcc-c++ \
     make \
-    cmake \
     antlr \
     antlr-C++ \
     libxml2 \
@@ -26,20 +24,21 @@ RUN yum install -y \
     libarchive-devel \
     openssl-devel \
     libcurl-devel \
-    python \
+    bzip2 \
+    rpm-build \
     && yum clean all \
     && rm -rf /var/cache/yum
+
+# Install ninja
+RUN curl -L -O https://github.com/ninja-build/ninja/releases/download/v1.8.2/ninja-linux.zip \
+    && unzip ninja-linux.zip \
+    && mv ninja /usr/local/bin/. \
+    && rm -fR ninja-linux
 
 # Download and install a newer binary version of cmake
 ARG CMAKE_BIN_URL=https://cmake.org/files/v3.14/cmake-3.14.1-Linux-x86_64.tar.gz
 RUN curl -L $CMAKE_BIN_URL | tar xz --strip-components=1 -C /usr/local/
 
-# Download, build, and install boost from source
-ARG BOOST_MINOR_VERSION=69
-RUN mkdir /boost-Build \
-    && curl -L https://sourceforge.net/projects/boost/files/boost/1.${BOOST_MINOR_VERSION}.0/boost_1_${BOOST_MINOR_VERSION}_0.tar.gz | \
-    tar xz --strip-components=1 -C /boost-Build \
-    && cd /boost-Build \
-    && ./bootstrap.sh --with-libraries=program_options \
-    && ./b2 link=static cxxflags="-fPIC -static -Wl,--whole-archive" threading=multi install \
-    && rm -fR /boost-Build
+# Download and install only needed boost files
+RUN curl -L http://www.sdml.cs.kent.edu/build/srcML-1.0.0-Boost.tar.gz | \
+    tar xz -C /usr/local/include
