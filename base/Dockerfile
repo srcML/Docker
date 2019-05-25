@@ -23,6 +23,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     libssl-dev \
     libcurl4-openssl-dev \
     cpio \
+    bzip2 \
     man \
     file \
     && rm -rf /var/lib/apt/lists/*
