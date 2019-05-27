@@ -26,6 +26,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     bzip2 \
     man \
     file \
+    dpkg-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Download and install a newer binary version of cmake
