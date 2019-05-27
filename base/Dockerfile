@@ -1,4 +1,4 @@
-wwFROM fedora:latest
+FROM fedora:latest
 LABEL org.srcml.email="srcmldev@gmail.com" \
       org.srcml.url="srcml.org" \
       org.srcml.distro="fedora" \
