@@ -1,9 +1,6 @@
 FROM ubuntu:latest
 
-RUN 	apt-get update && apt-get install --no-install-recommends -y man; 
-	# allow install of man pages
-#	sed -i 's|\(rpm.install.excludedocs\)|#\1|g' /etc/zypp/zypp.conf && \
-	# install man
+RUN apt-get update && apt-get install --no-install-recommends -y man; 
 
 ENV RPM=ubuntu_latest_x86_64
 ENV RPMPATH=/srcML_builds/${RPM}.deb
