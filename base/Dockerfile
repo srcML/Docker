@@ -27,6 +27,7 @@ RUN dnf install -y \
     cpio \
     zip \
     rpm-build \
+    rpmlint \
     man \
     && dnf clean all
 
