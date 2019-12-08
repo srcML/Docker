@@ -1,4 +1,4 @@
-FROM fedora:31
+FROM fedora:32
 
 # Install man pages and other utilities for testing
 RUN dnf install -y man findutils diffutils libxslt zip bzip2 cpio && \
