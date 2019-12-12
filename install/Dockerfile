@@ -1,4 +1,4 @@
-FROM ubuntu:19.04
+FROM ubuntu:20.04
 
 RUN apt-get update -y && apt-get install --no-install-recommends -y man libxslt1.1 libxml2-utils
 
