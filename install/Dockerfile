@@ -3,10 +3,11 @@ FROM ubuntu:16.04
 RUN apt-get update -y && apt-get install --no-install-recommends -y \
 	man \
 	bzip2 \
-	curl \
 	ninja-build \
 	libxml2-utils \
-	libxslt1.1
+	libxslt1.1; \
+	# curl needed installed recommends
+	apt-get install -y curl
 
 # Download and install a newer binary version of cmake
 ARG CMAKE_BIN_URL=https://cmake.org/files/v3.14/cmake-3.14.1-Linux-x86_64.tar.gz
