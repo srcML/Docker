@@ -1,8 +1,8 @@
-FROM ubuntu:19.04
+FROM ubuntu:19.10
 LABEL org.srcml.email="srcmldev@gmail.com" \
       org.srcml.url="srcml.org" \
       org.srcml.distro="ubuntu" \
-      org.srcml.osversion="19.04" \
+      org.srcml.osversion="19.10" \
       org.srcml.architecture="x86_64" \
       org.srcml.cmake="3.14.1" \
       org.srcml.boost="1.69.0"
