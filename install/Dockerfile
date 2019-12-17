@@ -1,4 +1,4 @@
-FROM opensuse/leap:15.1
+FROM opensuse/leap:15.2
 
 # Update and install dependencies
 RUN zypper --non-interactive install --no-recommends \
