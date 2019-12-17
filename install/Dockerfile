@@ -1,6 +1,1 @@
-FROM centos:oldest
-
-# Install man pages
-RUN yum install -y man && \
-    # Allow man page install
-    sed -i 's|\(tsflags=nodocs\)|#\1|g' /etc/yum.conf
+FROM srcml/centos_x86_64_install:7
