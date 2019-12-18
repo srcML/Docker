@@ -9,7 +9,6 @@ LABEL org.srcml.email="srcmldev@gmail.com" \
 
 # Install dependencies
 RUN dnf install -y \
-    tar \
     gcc-c++ \
     make \
     ninja-build \
@@ -20,7 +19,6 @@ RUN dnf install -y \
     libarchive-devel \
     libcurl-devel \
     openssl-devel \
-    python2 \
     bzip2 \
     cpio \
     zip \
