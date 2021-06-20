@@ -4,7 +4,7 @@ LABEL org.srcml.email="srcmldev@gmail.com" \
       org.srcml.distro="fedora" \
       org.srcml.osversion="latest" \
       org.srcml.architecture="x86_64" \
-      org.srcml.cmake="3.14.1" \
+      org.srcml.cmake="3.20.4" \
       org.srcml.boost="1.69.0"
 
 ENV PLATFORM=fedora:latest
@@ -32,7 +32,7 @@ RUN dnf install -y \
     && dnf clean all
 
 # Download and install a newer binary version of cmake
-ARG CMAKE_BIN_URL=https://cmake.org/files/v3.14/cmake-3.14.1-Linux-x86_64.tar.gz
+ARG CMAKE_BIN_URL=https://github.com/Kitware/CMake/releases/download/v3.20.4/cmake-3.20.4-linux-x86_64.tar.gz
 RUN curl -L $CMAKE_BIN_URL | tar xz --strip-components=1 -C /usr/local/
 
 # Download and install only needed boost files
