@@ -17,10 +17,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     zip \
     g++ \
     make \
-    cmake \
     ninja-build \
-    antlr \
-    libantlr-dev \
     libxml2-dev \
     libxml2-utils \
     libxslt1-dev \
@@ -36,6 +33,10 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
 # Download and install only needed boost files
 RUN curl -L http://www.sdml.cs.kent.edu/build/srcML-1.0.0-Boost.tar.gz | \
     tar xz -C /usr/local/include
+
+# CMake
+RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then ARCHITECTURE=aarch64; else ARCHITECTURE=x86_64; fi \
+    && curl --insecure -L "https://github.com/Kitware/CMake/releases/download/v3.24.1/cmake-3.24.1-linux-${ARCHITECTURE}.tar.gz" | tar xz --strip-components=1 -C /usr/local
 
 # Allow man pages to be installed
 RUN sed -i '/path-exclude=\/usr\/share\/man\/*/c\#path-exclude=\/usr\/share\/man\/*' /etc/dpkg/dpkg.cfg.d/excludes
