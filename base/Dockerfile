@@ -3,9 +3,7 @@ LABEL org.srcml.email="srcmldev@gmail.com" \
       org.srcml.url="srcml.org" \
       org.srcml.distro="centos" \
       org.srcml.osversion="8" \
-      org.srcml.architecture="x86_64" \
-      org.srcml.boost="1.69.0" \
-      org.srcml.cmake="3.14.1"
+      org.srcml.architecture="x86_64"
 
 # Update and install dependencies
 RUN dnf install -y 'dnf-command(config-manager)' && dnf config-manager --set-enabled PowerTools && dnf -y module enable javapackages-tools && dnf upgrade -y && dnf install -y \
@@ -14,9 +12,9 @@ RUN dnf install -y 'dnf-command(config-manager)' && dnf config-manager --set-ena
     unzip \
     gcc-c++ \
     make \
+    git \
     ninja-build \
-    antlr \
-    antlr-C++ \
+    java-11-openjdk-headless \
     libxml2-devel \
     libxslt-devel \
     libarchive-devel \
@@ -28,9 +26,14 @@ RUN dnf install -y 'dnf-command(config-manager)' && dnf config-manager --set-ena
     && dnf clean all \
     && rm -rf /var/cache/yum
 
-# Download and install a newer binary version of cmake
-ARG CMAKE_BIN_URL=https://cmake.org/files/v3.14/cmake-3.14.1-Linux-x86_64.tar.gz
-RUN curl -L $CMAKE_BIN_URL | tar xz --strip-components=1 -C /usr/local/
+# CMake
+ARG TARGETPLATFORM
+RUN case "${TARGETPLATFORM}" in \
+         "linux/amd64")  ARCHITECTURE="x86_64"   ;; \
+         "linux/arm64")  ARCHITECTURE="aarch64"  ;; \
+         *)  exit 1 ;; \
+    esac; \
+    curl --insecure -L "https://github.com/Kitware/CMake/releases/download/v3.24.1/cmake-3.24.1-linux-${ARCHITECTURE}.tar.gz" | tar xz --strip-components=1 -C /usr/local
 
 # Download and install only needed boost files
 RUN curl -L http://www.sdml.cs.kent.edu/build/srcML-1.0.0-Boost.tar.gz | \
