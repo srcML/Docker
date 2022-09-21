@@ -1,8 +1,8 @@
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 LABEL org.srcml.email="srcmldev@gmail.com" \
       org.srcml.url="srcml.org" \
       org.srcml.distro="ubuntu" \
-      org.srcml.osversion="20.04"
+      org.srcml.osversion="22.04"
 
 # Avoid prompts for timezone
 ENV TZ=US/Michigan
@@ -29,10 +29,6 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     dpkg-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Download and install only needed boost files
-RUN curl -L http://www.sdml.cs.kent.edu/build/srcML-1.0.0-Boost.tar.gz | \
-    tar xz -C /usr/local/include
-
 # CMake
 ARG TARGETPLATFORM
 RUN case "${TARGETPLATFORM}" in \
@@ -44,3 +40,5 @@ RUN case "${TARGETPLATFORM}" in \
 
 # Allow man pages to be installed
 RUN sed -i '/path-exclude=\/usr\/share\/man\/*/c\#path-exclude=\/usr\/share\/man\/*' /etc/dpkg/dpkg.cfg.d/excludes
+
+RUN apt-get remove -y libssl-dev
