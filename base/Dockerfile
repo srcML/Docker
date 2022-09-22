@@ -1,8 +1,27 @@
-FROM ubuntu:22.04
+ARG UBUNTU_VERSION=22.04
+FROM ubuntu:${UBUNTU_VERSION} AS ubuntu
+
+FROM ubuntu AS java
+ARG DEBIAN_FRONTEND=noninteractive
+RUN apt-get update -q \
+ && apt-get upgrade -q -y \
+ && apt-get install -q -y \
+        binutils \
+        openjdk-11-jdk-headless
+
+RUN jlink --compress=2 --strip-debug --add-modules=java.base --output /opt/java \
+    && strip -p --strip-unneeded /opt/java/lib/server/*.so \
+    && strip -p --strip-unneeded /opt/java/lib/*.so
+
+FROM ubuntu
 LABEL org.srcml.email="srcmldev@gmail.com" \
       org.srcml.url="srcml.org" \
       org.srcml.distro="ubuntu" \
       org.srcml.osversion="22.04"
+
+# Copy lightweight jre install
+COPY --from=java /opt/java /opt/java
+ENV JAVA_HOME=/opt/java
 
 # Avoid prompts for timezone
 ENV TZ=US/Michigan
@@ -15,14 +34,13 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     zip \
     g++ \
     make \
-    default-jre \
     ninja-build \
     libxml2-dev \
     libxml2-utils \
     libxslt1-dev \
     libarchive-dev \
-    libssl-dev \
     libcurl4-openssl-dev \
+    ca-certificates \
     cpio \
     man \
     file \
@@ -40,5 +58,3 @@ RUN case "${TARGETPLATFORM}" in \
 
 # Allow man pages to be installed
 RUN sed -i '/path-exclude=\/usr\/share\/man\/*/c\#path-exclude=\/usr\/share\/man\/*' /etc/dpkg/dpkg.cfg.d/excludes
-
-RUN apt-get remove -y libssl-dev
