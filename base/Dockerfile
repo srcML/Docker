@@ -1,8 +1,27 @@
-FROM ubuntu:20.04
+ARG UBUNTU_VERSION=20.04
+FROM ubuntu:$UBUNTU_VERSION AS ubuntu
+
+FROM ubuntu AS java
+ARG DEBIAN_FRONTEND=noninteractive
+RUN apt-get update -q \
+ && apt-get upgrade -q -y \
+ && apt-get install -q -y \
+        binutils \
+        openjdk-11-jdk-headless
+
+RUN jlink --compress=2 --strip-debug --add-modules=java.base --output /opt/java \
+    && strip -p --strip-unneeded /opt/java/lib/server/*.so \
+    && strip -p --strip-unneeded /opt/java/lib/*.so
+
+FROM ubuntu
 LABEL org.srcml.email="srcmldev@gmail.com" \
       org.srcml.url="srcml.org" \
       org.srcml.distro="ubuntu" \
-      org.srcml.osversion="20.04"
+      org.srcml.osversion="$UBUNTU_VERSION"
+
+# Copy lightweight jre install
+COPY --from=java /opt/java /opt/java
+ENV JAVA_HOME=/opt/java
 
 # Avoid prompts for timezone
 ENV TZ=US/Michigan
@@ -15,23 +34,18 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     zip \
     g++ \
     make \
-    default-jre \
     ninja-build \
     libxml2-dev \
     libxml2-utils \
     libxslt1-dev \
     libarchive-dev \
-    libssl-dev \
     libcurl4-openssl-dev \
+    ca-certificates \
     cpio \
     man \
     file \
     dpkg-dev \
     && rm -rf /var/lib/apt/lists/*
-
-# Download and install only needed boost files
-RUN curl -L http://www.sdml.cs.kent.edu/build/srcML-1.0.0-Boost.tar.gz | \
-    tar xz -C /usr/local/include
 
 # CMake
 ARG TARGETPLATFORM
