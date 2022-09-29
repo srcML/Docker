@@ -6,7 +6,7 @@ RUN  zypper --non-interactive install --no-recommends binutils curl
 
 ARG TARGETPLATFORM
 RUN case "${TARGETPLATFORM}" in \
-         "linux/amd64")  ARCHITECTURE="x86_64"   ;; \
+         "linux/amd64")  ARCHITECTURE="x64"   ;; \
          "linux/arm64")  ARCHITECTURE="aarch64"  ;; \
          *)  exit 1 ;; \
     esac; \
