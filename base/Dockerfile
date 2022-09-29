@@ -41,6 +41,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     libarchive-dev \
     libcurl4-openssl-dev \
     ca-certificates \
+    libssl-dev \
     cpio \
     man \
     file \
