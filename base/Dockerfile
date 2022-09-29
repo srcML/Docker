@@ -1,12 +1,31 @@
-FROM opensuse/leap:15.2
+ARG OPENSUSE_VERSION=15.2
+FROM opensuse/leap:${OPENSUSE_VERSION} AS opensuse
+
+FROM opensuse AS java
+RUN  zypper --non-interactive install --no-recommends binutils curl
+
+ARG TARGETPLATFORM
+RUN case "${TARGETPLATFORM}" in \
+         "linux/amd64")  ARCHITECTURE="x86_64"   ;; \
+         "linux/arm64")  ARCHITECTURE="aarch64"  ;; \
+         *)  exit 1 ;; \
+    esac; \
+    curl --insecure -L -O "https://download.oracle.com/java/17/latest/jdk-17_linux-${ARCHITECTURE}_bin.rpm" \
+    && rpm -U jdk-17_linux-${ARCHITECTURE}_bin.rpm
+
+RUN jlink --compress=2 --strip-debug --add-modules=java.base --output /opt/java \
+    && strip -p --strip-unneeded /opt/java/lib/server/*.so \
+    && strip -p --strip-unneeded /opt/java/lib/*.so
+
+FROM opensuse
 LABEL org.srcml.email="srcmldev@gmail.com" \
       org.srcml.url="srcml.org" \
       org.srcml.distro="opensuse" \
-      org.srcml.osversion="15.2" \
-      org.srcml.architecture="x86_64" \
-      org.srcml.cmake="3.14.1" \
-      org.srcml.boost="1.64.0" \
-      org.srcml.antlr="2.7.7"
+      org.srcml.osversion="15.2"
+
+# Copy lightweight jre install
+COPY --from=java /opt/java /opt/java
+ENV JAVA_HOME=/opt/java
 
 # Update and install dependencies
 RUN zypper --non-interactive install --no-recommends \
@@ -14,6 +33,7 @@ RUN zypper --non-interactive install --no-recommends \
     tar \
     gzip \
     gcc-c++ \
+    git \
     make \
     ninja \
     which \
@@ -29,32 +49,11 @@ RUN zypper --non-interactive install --no-recommends \
     rpm-build \
     && zypper clean -a
 
-# Download and install a newer binary version of cmake
-ARG CMAKE_BIN_URL=https://cmake.org/files/v3.14/cmake-3.14.1-Linux-x86_64.tar.gz
-RUN curl -L $CMAKE_BIN_URL | tar xz --strip-components=1 -C /usr/local/
-
-# Download and install only needed boost files
-RUN curl -L http://www.sdml.cs.kent.edu/build/srcML-1.0.0-Boost.tar.gz | \
-    tar xz -C /usr/local/include
-
-# libantlr packages for this platform do not build with -fPIC
-# Download, build, and install antlr from source
-ARG ANTLR_SRC_URL=http://www.antlr2.org/download/antlr-2.7.7.tar.gz
-RUN curl -L $ANTLR_SRC_URL | tar xz -C / \
-    # Build and install antlr library (libantlr) from source
-    && cd antlr-2.7.7 \
-    # Compile with -fPIC by changing line 59 in scripts/cxx.sh.in
-    && sed -i -e '59s/-pipe/-pipe -fPIC/' scripts/cxx.sh.in \
-    # Remove initialization of EOF_CHAR on line 475 of CharScanner.hpp
-    && sed -i -e '474s/= EOF/;/' lib/cpp/antlr/CharScanner.hpp \
-    # Add initialization of EOF_CHAR on line 102 of CharScanner.cpp
-    && sed -i -e '102s/EOF_CHAR;/EOF_CHAR = std::char_traits<char>::eof();/' lib/cpp/src/CharScanner.cpp \
-    # Insert #include <string.h> in CharScanner.hpp
-    && sed -i -e '1 i\#include <string.h>' lib/cpp/antlr/CharScanner.hpp \
-    # build and install
-    && ./configure --disable-examples && make install \
-    && cp antlr.jar /usr/share/java/. \
-    # remove build files
-    && rm -fR /antlr-2.7.7
-# install does not setup classpath
-ENV CLASSPATH /usr/share/java/antlr.jar
+# CMake
+ARG TARGETPLATFORM
+RUN case "${TARGETPLATFORM}" in \
+         "linux/amd64")  ARCHITECTURE="x86_64"   ;; \
+         "linux/arm64")  ARCHITECTURE="aarch64"  ;; \
+         *)  exit 1 ;; \
+    esac; \
+    curl --insecure -L "https://github.com/Kitware/CMake/releases/download/v3.24.1/cmake-3.24.1-linux-${ARCHITECTURE}.tar.gz" | tar xz --strip-components=1 -C /usr/local
