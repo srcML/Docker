@@ -1,6 +1,7 @@
 ARG UBUNTU_VERSION=22.04
 FROM ubuntu:${UBUNTU_VERSION} AS ubuntu
 
+# Generate lightweight jre
 FROM ubuntu AS java
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update -q \
@@ -44,6 +45,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     cpio \
     man \
     file \
+    valgrind \
     dpkg-dev \
     && rm -rf /var/lib/apt/lists/*
 
