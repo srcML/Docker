@@ -15,10 +15,10 @@ RUN jlink --compress=2 --strip-debug --add-modules=java.base --output /opt/java 
     && strip -p --strip-unneeded /opt/java/lib/*.so
 
 FROM ubuntu
-LABEL org.srcml.email="srcmldev@gmail.com" \
-      org.srcml.url="srcml.org" \
-      org.srcml.distro="ubuntu" \
-      org.srcml.osversion="22.04"
+LABEL org.srcml.email="srcmldev@gmail.com"
+LABEL org.srcml.url="srcml.org"
+LABEL org.srcml.distro="ubuntu"
+LABEL org.srcml.osversion="${UBUNTU_VERSION}"
 
 # Copy lightweight jre install
 COPY --from=java /opt/java /opt/java
@@ -46,6 +46,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     man \
     file \
     valgrind \
+    ccache \
     dpkg-dev \
     && rm -rf /var/lib/apt/lists/*
 
@@ -56,7 +57,11 @@ RUN case "${TARGETPLATFORM}" in \
          "linux/arm64")  ARCHITECTURE="aarch64"  ;; \
          *)  exit 1 ;; \
     esac; \
-    curl --insecure -L "https://github.com/Kitware/CMake/releases/download/v3.24.1/cmake-3.24.1-linux-${ARCHITECTURE}.tar.gz" | tar xz --strip-components=1 -C /usr/local
+    curl --insecure -L "https://github.com/Kitware/CMake/releases/download/v3.25.1/cmake-3.25.1-linux-${ARCHITECTURE}.tar.gz" | tar xz --strip-components=1 -C /usr/local
 
 # Allow man pages to be installed
 RUN sed -i '/path-exclude=\/usr\/share\/man\/*/c\#path-exclude=\/usr\/share\/man\/*' /etc/dpkg/dpkg.cfg.d/excludes
+
+# Put ccache into the path
+ENV PATH /usr/lib/ccache:$PATH
+RUN export PATH=/usr/lib/ccache/:$PATH
